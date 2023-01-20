@@ -49,7 +49,9 @@ body {
         height: 482px;
         width: 375px;
         background-color: #f3f3f3;
+        overflow-y: scroll;
 }
+
 .status{
         margin-top: 10px;
         width: 373px;
@@ -99,13 +101,14 @@ input {
         height: 80px;
      
 }
+
 ::placeholder {
     color: black;
 }
 .sendIcon {
         position:relative;
         top:30px;
-        left: -29px;
+        right: 40px;
         z-index: 1;
         background-color: white;
         height: 26px;
