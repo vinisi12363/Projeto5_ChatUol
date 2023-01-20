@@ -117,5 +117,5 @@ function sendMessage(msg){
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages',mensagem);  
     promise.then(processResponse);
     promise.catch(processError);
-
+    carregarMensagem();
 }
