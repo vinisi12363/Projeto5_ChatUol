@@ -38,15 +38,25 @@ body {
     top: 5px;
     left: 230px;
 }
+
+.chatContainer{
+        position:relative;
+        left: 0;
+        top:10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 482px;
+        width: 375px;
+        background-color: #f3f3f3;
+}
 .status{
-        position: relative;
-        left: 1px;
-        top: 10px;
+        margin-top: 10px;
         width: 373px;
-        height: 40px;
+        min-height: 40px;
         background: #DCDCDC;
         border-radius: 2px;
-        font-family: 'Roboto';
+        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -55,42 +65,49 @@ body {
         align-items: center;
         color: #AAAAAA;
 }
-.message {
-
-        position: relative;
-        left: 1px;
-        top: 20px;
+.message{
+        margin-top: 20px;
         width: 373px;
-        height: 40px;
+        min-height: 40px;
         background: #FFFFFF;
         border-radius: 2px;
         display: flex;
         align-items: center;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
 }
 
 .messageArea {
+        box-sizing: border-box;
         display: flex;
-        position: relative;
+        flex-direction: row;
         width: 375px;
         height: 80px;
-        left: 0px;
-        top: 430px;
-        background-color: green;
+        position: relative;
+        left: 1px;
+        top: 20px;
+        z-index: 1;
+        background-color: white;
 }
-.inputText {
+input {
+        box-sizing: border-box;
         display: flex;
-        width: 350px;
+        min-width: 374px;
         height: 80px;
-        
-
+     
 }
 ::placeholder {
     color: black;
 }
-.svgIcon {
-    position: relative;
-    top:27px;
-    left:30px;
-    height:26px;
-    width: 26px;
+.sendIcon {
+        position:relative;
+        top:30px;
+        left: -29px;
+        z-index: 1;
+        background-color: white;
+        height: 26px;
+        width: 26px;
 }

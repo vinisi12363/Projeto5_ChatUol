@@ -42,8 +42,6 @@ function processError(erro) {
 
 
 
-
-
 function statusResponse(resposta){
         console.log("online!");
 
@@ -58,7 +56,7 @@ function createChat(resposta){
             let hora= resposta.data[i].time;
             let nome_from= resposta.data[i].from;
             let nome_to= resposta.data[i].to;
-            let  texto= resposta.data[i].text;
+            let texto= resposta.data[i].text;
             let tipo= resposta.data[i].type;
             
             if (tipo === 'status' || tipo === 'message'){
@@ -77,9 +75,6 @@ function createChat(resposta){
 
 
 
-
-
-
 function verifyStatus(){
         verificadorDeStatus=user;
         const promise= axios.post('https://mock-api.driven.com.br/api/v6/uol/status',verificadorDeStatus);
@@ -94,3 +89,23 @@ setInterval(() => {
 setInterval(() => {
     carregarMensagem();  
 }, 3000);
+
+
+function btnEnviar(){
+     let input = document.getElementById("txtArea");
+     let msg = input.value;
+     sendMessage(msg);
+     input.value = "";
+}
+
+function sendMessage(msg){
+    
+    mensagem.from = user.name;
+    mensagem.to = "all";
+    mensagem.text = msg;
+    mensagem.type="message";
+    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages',mensagem);  
+    promise.then(processResponse);
+    promise.catch(processError);
+
+}
