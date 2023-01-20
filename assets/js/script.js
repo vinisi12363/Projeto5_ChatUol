@@ -90,6 +90,16 @@ setInterval(() => {
     carregarMensagem();  
 }, 3000);
 
+document.addEventListener("keypress", function (e){
+
+
+    if (e.key === "Enter") {
+
+        /*const btn = document.querySelector('.boxLow img')
+        btn.click();*/
+        btnEnviar();
+    }
+ }, false);
 
 function btnEnviar(){
      let input = document.getElementById("txtArea");
