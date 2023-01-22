@@ -39,6 +39,7 @@ function statusResponse(resposta){
 
 
 function createChat(resposta){
+        
         let chatContent=document.querySelector('.chatContainer');
         chatContent.innerText = "";
     
@@ -48,14 +49,24 @@ function createChat(resposta){
             let nome_to= resposta.data[i].to;
             let texto= resposta.data[i].text;
             let tipo= resposta.data[i].type;
-            
+
             if (tipo === 'status' || tipo === 'message'){
                 chatContent.innerHTML += `
-                    <div data-test = "message" class="${tipo}">
-                    (${hora}) ${nome_from} para ${nome_to} :${texto}
+                    <div data-test = "message" class="${tipo}"> 
+                    <span class="span_time">(${hora})</span>
+                    <span class="span_user"> ${nome_from}</span><span> para </span><span class="span_user"> ${nome_to} </span>:${texto}
                     </div> 
     
                 `
+            } else {
+
+                chatContent.innerHTML += `
+                <div data-test = "message" class="${tipo}"> 
+                <span class="span_time">(${hora})</span>
+                <span class="span_user"> ${nome_from} </span> reservadamente para <span class="span_user"> ${nome_to} </span>:${texto}
+                </div> 
+
+            `
             }
         }
 }
@@ -64,7 +75,7 @@ function createChat(resposta){
 
 
 function verifyStatus(){
-        verificadorDeStatus=user;
+        const verificadorDeStatus=user;
         const promise= axios.post('https://mock-api.driven.com.br/api/v6/uol/status',verificadorDeStatus);
         promise.then(statusResponse);
         promise.catch(processError);

@@ -58,14 +58,7 @@ body {
         min-height: 40px;
         background: #DCDCDC;
         border-radius: 2px;
-        font-family: 'Roboto', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 16px;
-        display: flex;
-        align-items: center;
-        color: #AAAAAA;
+        
 }
 .message{
         margin-top: 20px;
@@ -75,13 +68,40 @@ body {
         border-radius: 2px;
         display: flex;
         align-items: center;
+        
+}
+.private_message{  
+        margin-top: 20px;
+        width: 373px;
+        min-height: 63px;
+        background: #FFDEDE;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+     
+}
+.span_time{
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: #AAAAAA;
+        white-space: nowrap;
 }
-
+.span_user {
+        font-family: 'Roboto', sans-serif;
+        font-style:normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: black;
+        white-space: nowrap;
+}
 .messageArea {
         box-sizing: border-box;
         display: flex;
@@ -100,6 +120,10 @@ input {
         min-width: 374px;
         height: 80px;
      
+}
+
+.span_time {
+        color:#AAAAAA;
 }
 
 ::placeholder {
