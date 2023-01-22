@@ -39,10 +39,10 @@ function statusResponse(resposta){
 
 
 function createChat(resposta){
-        
+    
         let chatContent=document.querySelector('.chatContainer');
         chatContent.innerText = "";
-    
+      
         for(let i = 0;  i < 100 ; i ++){
             let hora= resposta.data[i].time;
             let nome_from= resposta.data[i].from;
@@ -65,21 +65,22 @@ function createChat(resposta){
                 </div> 
 
             `
-            }
-        }
+            }    
+        }  
+        let heightPage = chatContent.scrollHeight;
+        chatContent.scrollTo(0 , heightPage);
+       
 }
 
 
 
 
 function verifyStatus(){
-        const verificadorDeStatus=user;
-        const promise= axios.post('https://mock-api.driven.com.br/api/v6/uol/status',verificadorDeStatus);
+        const promise= axios.post('https://mock-api.driven.com.br/api/v6/uol/status',user);
         promise.then(statusResponse);
         promise.catch(processError);
 }
 setInterval(() => {
-    console.log("verificando status do usuario: "+user.name);
     verifyStatus();
 }, 5000);
 

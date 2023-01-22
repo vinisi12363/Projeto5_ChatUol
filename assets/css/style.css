@@ -56,7 +56,12 @@ span{
         background-color: #f3f3f3;
         overflow-y: scroll;
 }
+.chatContainer ::-webkit-scrollbar {
+        width: 5px;
+        height: 8px;
+        background-color: #aaa; 
 
+}
 .status{
         margin-top: 10px;
         width: 373px;
