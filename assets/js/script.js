@@ -1,21 +1,13 @@
-
-
-
-
+"use strict";
 let mensagem = new Object();
-
 const user = new Object();
 
 function criarUser(){
         user.name = prompt("Digite o seu nome de usuário");
-
         const promise=axios.post('https://mock-api.driven.com.br/api/v6/uol/participants' , user);
         promise.then(processResponse);
         promise.catch(processError);
-        console.log("Enviou a requisição");
-
-
-        
+      
 }
 criarUser();
 
@@ -26,6 +18,7 @@ function carregarMensagem(){
     loadMessages.catch(processError);
 }
 carregarMensagem();
+
 function processResponse(resposta){
 
         console.log("usuario cadastrado!");
@@ -38,9 +31,6 @@ function processError(erro) {
         console.log("Status code: " + erro.response.status); // Ex: 404
         console.log("Mensagem de erro: " + erro.response.data); // Ex: Not Found
 }
-
-
-
 
 function statusResponse(resposta){
         console.log("online!");
@@ -68,8 +58,6 @@ function createChat(resposta){
                 `
             }
         }
-    
-        chatContent.querySelector('div:last-child').scrollIntoView();
 }
 
 
@@ -92,29 +80,24 @@ setInterval(() => {
 
 document.addEventListener("keypress", function (e){
 
-
     if (e.key === "Enter") {
-
-        /*const btn = document.querySelector('.boxLow img')
-        btn.click();*/
         btnEnviar();
     }
  }, false);
 
+
 function btnEnviar(){
-     let input = document.getElementById("txtArea");
-     let msg = input.value;
-     sendMessage(msg);
-     input.value = "";
+     sendMessage(document.getElementById("txtArea").value);
+     document.getElementById("txtArea").value= "";
 }
 
 function sendMessage(msg){
-    
     mensagem.from = user.name;
-    mensagem.to = "all";
+    mensagem.to = "Todos";
     mensagem.text = msg;
     mensagem.type="message";
-    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages',mensagem);  
+    
+    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem);  
     promise.then(processResponse);
     promise.catch(processError);
     carregarMensagem();
