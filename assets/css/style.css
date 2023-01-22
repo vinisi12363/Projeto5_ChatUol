@@ -1,24 +1,27 @@
 *{
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+        box-sizing: border-box;
 }
 body {
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;    
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        display: flex;    
+        align-items: center;
+        justify-content: center;
 }
 span{
         display: inline;
 }
 .main{
-    display: flex;
-    flex-direction: column;
-    width: 375px;
-    height: 667px;
-    background-color: #f3f3f3;
-  
+        position: relative;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        width: 375px;
+        height: 667px;
+        background-color: #f3f3f3;
+        
    
 }
 .logoArea{
@@ -39,9 +42,9 @@ span{
         top: 16px;
 }
 .contactImg{
-    position: relative;
-    top: 5px;
-    left: 230px;
+        position: relative;
+        top: 5px;
+        left: 230px;
 }
 
 .chatContainer{
@@ -60,7 +63,6 @@ span{
         width: 5px;
         height: 8px;
         background-color: #aaa; 
-
 }
 .status{
         margin-top: 10px;
@@ -129,7 +131,7 @@ span{
         z-index: 1;
         background-color: white;
 }
-input {
+#txtArea {
         box-sizing: border-box;
         display: flex;
         min-width: 374px;
@@ -152,4 +154,53 @@ input {
         background-color: white;
         height: 26px;
         width: 26px;
+}
+
+.hide{
+       display: none;
+}
+.loginScreen{
+        flex-direction: column;
+        height: 667px;
+        width: 375px;
+        background-color: white;
+       
+}
+.loginScreen img{
+        position: relative;
+        top:72px;
+        left:122px;
+        height: 92px;
+        width: 130px;
+}
+#inputLogin {
+        width: 261px;
+        height: 54px;
+        position: relative;
+        left: 57px;
+        top: 150px;
+      
+}
+#inputLogin::placeholder{
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: center;
+        color: #AEAEAE;
+}
+#btnEntrar {
+        position: relative;
+        width: 109px;
+        height: 45px;
+        right: 130px;
+        top: 230px;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: center;
+        color: #696969;
 }
