@@ -2,22 +2,62 @@
 let mensagem = new Object();
 const user = new Object();
 
+let usuarioAutorizado = 0;
+testarUsuario();
+
+function testarUsuario(){
+    if(usuarioAutorizado === 0){
+            user.name = prompt("Digite o seu nome de usuário"); 
+            const  loadMessages = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+            loadMessages.then(verificaUsuario);
+            loadMessages.catch(processError);
+    }
+}
+
+
+
+
+
+
+function verificaUsuario(resposta){
+  
+    for(let i = 0;  i < 100 ; i ++){
+        if(user.name === resposta.data[i].from){
+            console.log("nome de usuario:"+user.name+"nome do server"+resposta.data[i].from);
+            alert("Nome de usuário "+user.name+" já existe, por favor escolha outro!");
+            testarUsuario();
+
+        }else if (user.name != resposta.data[i].from && i === 99){
+            alert("logado com sucesso!");
+            usuarioAutorizado = 1;
+            criarUser();
+        }
+    }
+}
+
+function carregarMensagem(){
+        const  loadMessages = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+        loadMessages.then(createChat);
+        loadMessages.catch(processError);
+}
+
 function criarUser(){
-        user.name = prompt("Digite o seu nome de usuário");
+        console.log("usuario flag:"+usuarioAutorizado);
+         if(usuarioAutorizado){
+        
         const promise=axios.post('https://mock-api.driven.com.br/api/v6/uol/participants' , user);
         promise.then(processResponse);
         promise.catch(processError);
-      
-}
-criarUser();
 
-function carregarMensagem(){
-
-    const  loadMessages = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-    loadMessages.then(createChat);
-    loadMessages.catch(processError);
+        carregarMensagem();
+            
+        }else{
+            alert("houve um problema com a autenticação do usuario, por favor volte mais tarde.");
+            
+        }
 }
-carregarMensagem();
+
+
 
 function processResponse(resposta){
 
@@ -32,14 +72,13 @@ function processError(erro) {
         console.log("Mensagem de erro: " + erro.response.data); // Ex: Not Found
 }
 
-function statusResponse(resposta){
+function statusResponse(){
         console.log("online!");
 
 }
 
 
 function createChat(resposta){
-    
         let chatContent=document.querySelector('.chatContainer');
         chatContent.innerText = "";
       
@@ -80,6 +119,7 @@ function verifyStatus(){
         promise.then(statusResponse);
         promise.catch(processError);
 }
+
 setInterval(() => {
     verifyStatus();
 }, 5000);
@@ -106,7 +146,6 @@ function sendMessage(msg){
     mensagem.to = "Todos";
     mensagem.text = msg;
     mensagem.type="message";
-    
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem);  
     promise.then(processResponse);
     promise.catch(processError);
