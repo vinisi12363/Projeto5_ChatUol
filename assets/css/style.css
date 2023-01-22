@@ -3,9 +3,14 @@
     box-sizing: border-box;
 }
 body {
-     display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;    
+    display: flex;
     align-items: center;
     justify-content: center;
+}
+span{
+        display: inline;
 }
 .main{
     display: flex;
@@ -57,7 +62,10 @@ body {
         width: 373px;
         min-height: 40px;
         background: #DCDCDC;
+        display: flex;
         border-radius: 2px;
+        display: inline-block;
+       
         
 }
 .message{
@@ -68,7 +76,8 @@ body {
         border-radius: 2px;
         display: flex;
         align-items: center;
-        
+        display: inline-block;
+      
 }
 .private_message{  
         margin-top: 20px;
@@ -78,6 +87,8 @@ body {
         border-radius: 2px;
         display: flex;
         align-items: center;
+        display: inline;
+       
      
 }
 .span_time{
@@ -86,10 +97,9 @@ body {
         font-weight: 400;
         font-size: 14px;
         line-height: 16px;
-        display: flex;
         align-items: center;
         color: #AAAAAA;
-        white-space: nowrap;
+
 }
 .span_user {
         font-family: 'Roboto', sans-serif;
@@ -97,10 +107,10 @@ body {
         font-weight: 600;
         font-size: 14px;
         line-height: 16px;
-        display: flex;
+     
         align-items: center;
         color: black;
-        white-space: nowrap;
+
 }
 .messageArea {
         box-sizing: border-box;
