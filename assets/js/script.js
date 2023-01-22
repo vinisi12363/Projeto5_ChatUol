@@ -24,11 +24,11 @@ function verificaUsuario(resposta){
     for(let i = 0;  i < 100 ; i ++){
         if(user.name === resposta.data[i].from){
             console.log("nome de usuario:"+user.name+"nome do server"+resposta.data[i].from);
-            alert("Nome de usuário "+user.name+" já existe, por favor escolha outro!");
+            console.log("Nome de usuário "+user.name+" já existe, por favor escolha outro!");
             testarUsuario();
 
         }else if (user.name != resposta.data[i].from && i === 99){
-            alert("logado com sucesso!");
+            console.log("logado com sucesso!");
             usuarioAutorizado = 1;
             criarUser();
         }
@@ -51,8 +51,8 @@ function criarUser(){
 
         carregarMensagem();
             
-        }else{
-            alert("houve um problema com a autenticação do usuario, por favor volte mais tarde.");
+            }else{
+            console.log("houve um problema com a autenticação do usuario, por favor volte mais tarde.");
             
         }
 }
