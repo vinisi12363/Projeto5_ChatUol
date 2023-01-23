@@ -57,21 +57,21 @@ function createChat(resposta){
                 if (tipo === 'status' || tipo === 'message'){
                     chatContent.innerHTML += `
                         <div data-test = "message" class="${tipo}"> 
-                        <span class="span_time">(${hora})</span><span class="span_user"> ${nome_from}</span><span> para </span><span class="span_user"> ${nome_to} </span>: ${texto}
+                        <span class="span_time">(${hora})</span><span class="span_user"> ${nome_from}</span><span> para </span><span class="span_user"> ${nome_to} </span><span>: ${texto}</span>
                         </div> 
         
                     `
-                    
+                       
                 } else {
 
                     chatContent.innerHTML += `
                     <div data-test = "message" id="${tipo+i}"class="${tipo}"> 
-                    <span class="span_time">(${hora})</span><span class="span_user"> ${nome_from} </span> reservadamente para <span class="span_user"> ${nome_to} </span>: ${texto}
+                    <span class="span_time">(${hora})</span><span class="span_user"> ${nome_from} </span> reservadamente para <span class="span_user"> ${nome_to} </span><span>: ${texto}</span>
                     </div> 
 
                 `
                     
-                  
+                       
                 }  
                 
                 if(resposta.data[i].type === "private_message"){
@@ -127,12 +127,12 @@ setInterval(() => {
 }, 5000);
 
 
-
+/*
 setInterval(() => {
     carregarMensagem();  
     chatContent.scrollIntoView(false);
 }, 3000); 
-
+*/
 
 function processErrorLoadMessages(erro) {
     console.log("Status code: " + erro.response.status); // Ex: 404
@@ -149,7 +149,6 @@ function processErrorCreateUser(erro) {
     alert("o nome de usuario ja existe, tente um outro!");
     user.name ="";
     reloadPage();
-
 
 }
 
