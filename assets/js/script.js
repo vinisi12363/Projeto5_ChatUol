@@ -12,7 +12,7 @@ let usuarioAutenticado = 0;
  criarUser();
 function criarUser(){
           
-    debugger;       
+    
     const creatingUser= axios.post('https://mock-api.driven.com.br/api/v6/uol/participants' , user);
     creatingUser.then(processResponseCreateUser);
     creatingUser.catch(processErrorCreateUser);
@@ -65,13 +65,24 @@ function createChat(resposta){
                 } else {
 
                     chatContent.innerHTML += `
-                    <div data-test = "message" class="${tipo}"> 
+                    <div data-test = "message" id="${tipo+i}"class="${tipo}"> 
                     <span class="span_time">(${hora})</span><span class="span_user"> ${nome_from} </span> reservadamente para <span class="span_user"> ${nome_to} </span>: ${texto}
                     </div> 
 
                 `
-                }   
+                    
+                  
+                }  
+                debugger;
+                if(resposta.data[i].type === "private_message"){
 
+                        if(nome_from !== user.name || nome_to !== user.name){
+                        
+                         const divPrivada=document.getElementById(`private_message${i}`);
+                                divPrivada.classList.add("hide");
+                    
+                        }  
+                }
             }  
             
             chatContent.scrollIntoView(false);
@@ -166,3 +177,4 @@ function processErrorSendMessage(erro){
 function reloadPage(){
     window.location.reload();
 }
+
