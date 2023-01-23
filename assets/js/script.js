@@ -9,14 +9,14 @@ let usuarioAutenticado = 0;
 
  user.name = prompt("Digite o nome de usuário");
 
- criarUser();
+criarUser();
 function criarUser(){
           
     
     const creatingUser= axios.post('https://mock-api.driven.com.br/api/v6/uol/participants' , user);
     creatingUser.then(processResponseCreateUser);
     creatingUser.catch(processErrorCreateUser);
-    carregarMensagem();
+ 
    
     
 
@@ -34,9 +34,9 @@ function carregarMensagem(){
 
 
 function processResponseCreateUser(resposta){
-
-            verifyStatus();          
-             usuarioAutenticado=1;
+            carregarMensagem();
+             verifyStatus();          
+            usuarioAutenticado=1;
             console.log("usuario cadastrado!");
             console.log (resposta.status);
 
@@ -75,11 +75,11 @@ function createChat(resposta){
                 }  
                 
                 if(resposta.data[i].type === "private_message"){
-
-                        if(nome_from !== user.name || nome_to !== user.name){
                         
-                         const divPrivada=document.getElementById(`private_message${i}`);
-                                divPrivada.classList.add("hide");
+                        if(nome_from !== user.name && nome_to !== user.name){
+                        
+                            const divPrivada=document.getElementById(`private_message${i}`);
+                            divPrivada.classList.add("hide");
                     
                         }  
                 }
@@ -148,7 +148,10 @@ function processErrorCreateUser(erro) {
     console.log("nome de USUARIO JA EXISTE " + erro.response.data); // Ex: Not Found
     alert("o nome de usuario ja existe, tente um outro!");
     user.name ="";
-    reloadPage();
+    user.name = prompt("Digite o nome de usuário");
+    criarUser();
+
+    
 
 }
 
