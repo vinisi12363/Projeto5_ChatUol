@@ -73,7 +73,7 @@ function createChat(resposta){
                     
                   
                 }  
-                debugger;
+                
                 if(resposta.data[i].type === "private_message"){
 
                         if(nome_from !== user.name || nome_to !== user.name){
