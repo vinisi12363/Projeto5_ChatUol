@@ -116,7 +116,7 @@ function sendMessage(msg){
             const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem);  
             promise.then(processResponseSendMessage);
             promise.catch(processErrorSendMessage);
-            carregarMensagem();
+           
             chatContent.scrollIntoView(false);
 }
 
@@ -166,6 +166,7 @@ function processErrorStatus(erro){
 }
 
 function processResponseSendMessage(){
+    carregarMensagem();
     console.log("mensagem enviada com sucesso!");
 }
 
