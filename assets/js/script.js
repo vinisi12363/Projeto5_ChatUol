@@ -127,12 +127,12 @@ setInterval(() => {
 }, 5000);
 
 
-/*
+
 setInterval(() => {
     carregarMensagem();  
     chatContent.scrollIntoView(false);
 }, 3000); 
-*/
+
 
 function processErrorLoadMessages(erro) {
     console.log("Status code: " + erro.response.status); // Ex: 404
