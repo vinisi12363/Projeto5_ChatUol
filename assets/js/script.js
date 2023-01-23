@@ -146,7 +146,7 @@ function processErrorAutenticador(erro) {
 function processErrorCreateUser(erro) {
     console.log("Status code: " + erro.response.status); // Ex: 404
     console.log("nome de USUARIO JA EXISTE " + erro.response.data); // Ex: Not Found
-    spam("o nome de usuario ja existe, tente um outro!");
+    alert("o nome de usuario ja existe, tente um outro!");
     user.name ="";
     reloadPage();
 
