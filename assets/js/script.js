@@ -2,56 +2,25 @@
 let mensagem = new Object();
 let user = new Object();
 
+let chatContent=document.querySelector('.chatContainer');
+let heightPage = chatContent.scrollHeight;
 
 let usuarioAutenticado = 0;
 
-let chatContent=document.querySelector('.chatContainer');
-let heightPage = chatContent.scrollHeight;
-              
+ user.name = prompt("Digite o nome de usuário");
 
-autenticarUsuario();
+ criarUser();
+function criarUser(){
+          
+    debugger;       
+    const creatingUser= axios.post('https://mock-api.driven.com.br/api/v6/uol/participants' , user);
+    creatingUser.then(processResponseCreateUser);
+    creatingUser.catch(processErrorCreateUser);
+    carregarMensagem();
+   
+    
 
-
-function autenticarUsuario(){
-
-    let inputUsuario = prompt("Digite o nome de usuário");
-
-
-    if(usuarioAutenticado == 0 && (inputUsuario!= null || inputUsuario != undefined|| inputUsuario!== "")){
-            user.name = inputUsuario;
-            const  authUser = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-            authUser.then(verificaUsuarioExiste);
-            authUser.catch(processErrorAutenticador);
-    }else{
-            alert("Nome de usuário já existe ou o campo está vazio, por favor escolha outro!");
-            inputUsuario="";
-            autenticarUsuario();
-    }
 }
-
-
-function verificaUsuarioExiste(resposta){
-
-         //debugger;  
-      
-        for (let i=0 ; i<100 ; i++){
-                if(resposta.data[i].from===user.name){
-                    spam("o nome de usuario ja existe, tente um outro!");
-                    user.name ="";
-                    autenticarUsuario();
-                
-                }else if (user.name!= undefined || user.name !="" || resposta.data[i].from!=user.name){
-                   
-                    console.log("logado com sucesso!");
-                    usuarioAutenticado = 1;
-                    criarUser();
-                    break;
-                }else{
-                    console.log("caiu no else da verificação");
-                }
-        }
-}
-
 
 
 function carregarMensagem(){
@@ -62,22 +31,12 @@ function carregarMensagem(){
             chatContent.scrollIntoView(false);
 }
 
-function criarUser(){
-          
-           
-            const creatingUser= axios.post('https://mock-api.driven.com.br/api/v6/uol/participants' , user);
-            creatingUser.then(processResponseCreateUser);
-            creatingUser.catch(processErrorCreateUser);
-            carregarMensagem();
-           
-            
-        
-}
-
 
 
 function processResponseCreateUser(resposta){
 
+            verifyStatus();          
+             usuarioAutenticado=1;
             console.log("usuario cadastrado!");
             console.log (resposta.status);
 
@@ -102,8 +61,6 @@ function createChat(resposta){
                         </div> 
         
                     `
-                 
-        
                     
                 } else {
 
@@ -126,8 +83,6 @@ function verifyStatus(){
             promise.then(statusResponse);
             promise.catch(processErrorStatus);
 }
-
-
 
 
 document.addEventListener("keypress", function (e){
@@ -155,16 +110,14 @@ function sendMessage(msg){
 }
 
 
-    
+  
 setInterval(() => {
     verifyStatus();          
-
 }, 5000);
 
 
 
 setInterval(() => {
-
     carregarMensagem();  
     chatContent.scrollIntoView(false);
 }, 3000); 
@@ -181,16 +134,22 @@ function processErrorAutenticador(erro) {
 }
 function processErrorCreateUser(erro) {
     console.log("Status code: " + erro.response.status); // Ex: 404
-    console.log("erro no create " + erro.response.data); // Ex: Not Found
+    console.log("nome de USUARIO JA EXISTE " + erro.response.data); // Ex: Not Found
+    spam("o nome de usuario ja existe, tente um outro!");
+    user.name ="";
+    reloadPage();
+
 
 }
+
 function statusResponse(){
-    console.log("online!");
+    console.log("usuario "+user.name+" online!");
 }
 function processErrorStatus(erro){
+   
     console.log("Status code: " + erro.response.status); // Ex: 404
-    console.log("erro no status " + erro.response.data); // Ex: Not Found
-
+    console.log("erro! já existe um usuario online com esse nick " + erro.response.data); // Ex: Not Found
+    reloadPage();
 }
 
 function processResponseSendMessage(){
@@ -201,4 +160,9 @@ function processErrorSendMessage(erro){
     console.log("Status code: " + erro.response.status); // Ex: 404
     console.log("erro no SendMessage " + erro.response.data); // Ex: Not Found
 
+}
+
+
+function reloadPage(){
+    window.location.reload();
 }
